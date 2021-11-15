@@ -2,8 +2,12 @@ package com.restaran.restaran.model;
 
 
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "users")
@@ -20,6 +24,16 @@ public class UserModel {
     private String lastname;
     private String email;
 
+    public Collection<GrantedAuthority> getGrantedAuthoritiesList() {
+        return grantedAuthoritiesList;
+    }
+
+    public void setGrantedAuthoritiesList(Collection<GrantedAuthority> grantedAuthoritiesList) {
+        this.grantedAuthoritiesList = grantedAuthoritiesList;
+    }
+
+    @Transient
+    private Collection<GrantedAuthority> grantedAuthoritiesList = new ArrayList<>();
 
     @Column(name = "local_date_time", columnDefinition = "TIMESTAMP")
     private LocalDateTime createdata;
