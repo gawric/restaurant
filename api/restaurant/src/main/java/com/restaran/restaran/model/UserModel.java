@@ -15,7 +15,7 @@ public class UserModel {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
@@ -23,28 +23,41 @@ public class UserModel {
     private String firstname;
     private String lastname;
     private String email;
+    private String myrole;
 
-    public Collection<GrantedAuthority> getGrantedAuthoritiesList() {
-        return grantedAuthoritiesList;
-    }
 
-    public void setGrantedAuthoritiesList(Collection<GrantedAuthority> grantedAuthoritiesList) {
-        this.grantedAuthoritiesList = grantedAuthoritiesList;
-    }
-
+    //hibernate игнорирует поле
     @Transient
     private Collection<GrantedAuthority> grantedAuthoritiesList = new ArrayList<>();
 
-    @Column(name = "local_date_time", columnDefinition = "TIMESTAMP")
+    @Column(name = "createdata", columnDefinition = "TIMESTAMP")
     private LocalDateTime createdata;
 
     public LocalDateTime getCreatedata() {
         return createdata;
     }
 
+    public void setGrantedAuthoritiesList(Collection<GrantedAuthority> grantedAuthoritiesList) {
+        this.grantedAuthoritiesList = grantedAuthoritiesList;
+    }
+
     public void setCreatedata(LocalDateTime createdata) {
         this.createdata = createdata;
     }
+
+    public String getMyrole() {
+        return myrole;
+    }
+
+    public void setMyrole(String myrole) {
+        this.myrole = myrole;
+    }
+
+
+    public Collection<GrantedAuthority> getGrantedAuthoritiesList() {
+        return grantedAuthoritiesList;
+    }
+
 
     public String getUsername() {
         return username;
