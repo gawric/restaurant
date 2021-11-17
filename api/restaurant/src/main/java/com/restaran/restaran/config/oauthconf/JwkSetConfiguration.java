@@ -69,6 +69,7 @@ public class JwkSetConfiguration extends AuthorizationServerConfigurerAdapter {
                 .scopes("any") // (4)
                 .autoApprove(true)
                 .authorizedGrantTypes("password", "refresh_token")
+
         .and()
                 .withClient(client_id_web)
                 .secret(passwordEncoder.encode(client_web_secret)) // (3)
