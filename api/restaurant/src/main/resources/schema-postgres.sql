@@ -1,2 +1,2 @@
 DROP TABLE IF EXISTS users;
-CREATE TABLE users(id serial PRIMARY KEY, username VARCHAR(255), password VARCHAR(255) , firstname VARCHAR(255) , lastname VARCHAR(255) , email VARCHAR(255) , createdata TIMESTAMP , myrole VARCHAR(20));
+CREATE TABLE users(id serial PRIMARY KEY, username VARCHAR(255), password VARCHAR(255) , firstname VARCHAR(255) , lastname VARCHAR(255) , email VARCHAR(255) , createdata TIMESTAMP , lastenterdata TIMESTAMP , myrole VARCHAR(20));

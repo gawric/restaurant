@@ -5,6 +5,10 @@ package com.restaran.restaran.model;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,11 +22,27 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "username не может быть пустым")
+    @Size(min=2, message="username не может быть короче 2 символов")
     private String username;
+
+    @NotEmpty(message = "password не может быть пустым")
+    @Size(min=8, message="password не может быть короче 8 символов")
     private String password;
+
+    @NotEmpty(message = "firstname не может быть пустым")
+    @Size(min=2, message="firstname не может быть короче 2 символов")
     private String firstname;
+
+    @NotEmpty(message = "lastname не может быть пустым")
+    @Size(min=2, message="lastname не может быть короче 2 символов")
     private String lastname;
+
+    @Email
     private String email;
+
+    @NotEmpty(message = "myrole не может быть пустым")
+    @Size(min=2, message="myrole не может быть короче 2 символов")
     private String myrole;
 
 
@@ -32,6 +52,11 @@ public class UserModel {
 
     @Column(name = "createdata", columnDefinition = "TIMESTAMP")
     private LocalDateTime createdata;
+
+
+
+    @Column(name = "lastenterdata", columnDefinition = "TIMESTAMP")
+    private LocalDateTime lastenterdata;
 
     public LocalDateTime getCreatedata() {
         return createdata;
@@ -104,6 +129,13 @@ public class UserModel {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    public LocalDateTime getLastEnterdata() {
+        return lastenterdata;
+    }
+
+    public void setLastEnterdata(LocalDateTime lastenterdata) {
+        this.lastenterdata = lastenterdata;
     }
 
 
