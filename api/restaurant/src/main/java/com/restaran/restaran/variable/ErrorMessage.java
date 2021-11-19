@@ -12,5 +12,12 @@ public  class ErrorMessage {
                 .body("Error Message: " + errorName);
     }
 
+    public static ResponseEntity<Object> getResponceErrorHttpStatus(String errorName , HttpStatus status)
+    {
+        return new ResponseEntity(status)
+                .status(status)
+                .body("Error Message: " + errorName);
+    }
+
 
 }

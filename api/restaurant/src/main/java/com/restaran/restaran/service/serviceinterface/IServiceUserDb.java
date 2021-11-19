@@ -8,6 +8,8 @@ public interface IServiceUserDb {
     UserModel findById(long id);
     boolean saveUser(UserModel userm);
     boolean findExistByname(String name);
-    ResponseEntity<Object> findByIdTWeb(long id);
-    ResponseEntity<Object> addUserWeb(UserModel newUser);
+    boolean deleteUser(long id);
+    boolean findExistById(long id);
+
+
 }

@@ -12,7 +12,11 @@ import java.util.Optional;
 public interface  UserModelRepository extends CrudRepository<UserModel, String> {
     UserModel findByUsername(String username);
     UserModel findById(long id);
+    void deleteById(long id);
 
     @Query("select count(p) = 1 from UserModel p where username = ?1")
     boolean findExistByname(String name);
+
+    @Query("select count(p) = 1 from UserModel p where id = ?1")
+    boolean findExistById(long id);
 }
