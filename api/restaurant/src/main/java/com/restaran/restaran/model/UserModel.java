@@ -2,6 +2,7 @@ package com.restaran.restaran.model;
 
 
 
+//import io.swagger.annotations.ApiModelProperty;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //@ApiModelProperty(notes = "Имя пользователя",name="name",required=true,value="gawric")
     @NotEmpty(message = "username не может быть пустым")
     @Size(min=2, message="username не может быть короче 2 символов")
     private String username;
@@ -41,11 +43,13 @@ public class UserModel {
     @Email
     private String email;
 
+    //@ApiModelProperty(notes = "Роль пользователя в системе безопасности",name="name",required=true,value="ROLE_USER")
     @NotEmpty(message = "myrole не может быть пустым")
     @Size(min=2, message="myrole не может быть короче 2 символов")
     private String myrole;
 
 
+   // @ApiModelProperty(notes = "Список ролей пользователя. Не используется из внешних запросов!",name="name",required=true,value="GrantedAuthority")
     //hibernate игнорирует поле
     @Transient
     private Collection<GrantedAuthority> grantedAuthoritiesList = new ArrayList<>();
@@ -57,6 +61,11 @@ public class UserModel {
 
     @Column(name = "lastenterdata", columnDefinition = "TIMESTAMP")
     private LocalDateTime lastenterdata;
+
+    @Override
+    public String toString() {
+        return "User [name=" + username + ", firstname=" + firstname + ", myrole=" + myrole + "]";
+    }
 
     public LocalDateTime getCreatedata() {
         return createdata;
