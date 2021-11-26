@@ -2,7 +2,7 @@ package com.restaran.restaran.service;
 
 import com.restaran.restaran.model.CustomUser;
 import com.restaran.restaran.model.UserModel;
-import com.restaran.restaran.service.serviceinterface.IServiceUserDb;
+import com.restaran.restaran.service.serviceinterface.dbinterface.IServiceUserDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

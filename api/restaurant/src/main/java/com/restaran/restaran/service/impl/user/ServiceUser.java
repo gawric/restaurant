@@ -6,7 +6,7 @@ import com.restaran.restaran.exception.NoAccessEditingUserException;
 import com.restaran.restaran.exception.NotFoundUserException;
 import com.restaran.restaran.model.UserModel;
 import com.restaran.restaran.service.serviceinterface.IServiceUser;
-import com.restaran.restaran.service.serviceinterface.IServiceUserDb;
+import com.restaran.restaran.service.serviceinterface.dbinterface.IServiceUserDb;
 import com.restaran.restaran.variable.ErrorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

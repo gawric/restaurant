@@ -17,7 +17,7 @@ public class DishesModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long dishes_id;
+    private long dishes_id;
 
     @NotEmpty(message = "name не может быть пустым")
     @Size(min=2, message="name не может быть короче 2 символов")
@@ -27,8 +27,6 @@ public class DishesModel {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<IngredientModel> ingredient = new ArrayList<IngredientModel>();
 
-    //@ElementCollection(targetClass=IngredientModel.class)
-    //@OneToMany(mappedBy="dishes")
     public List<IngredientModel> getIngredient() {
         return this.ingredient;
     }
@@ -36,14 +34,9 @@ public class DishesModel {
         this.ingredient = ingredient;
     }
 
-    @NotEmpty(message = "price не может быть пустым")
+
     private int price;
-
-    @NotEmpty(message = "calories не может быть пустым")
     private int calories;
-
-
-    @NotEmpty(message = "weight не может быть пустым")
     private int weight;
 
     public Long getDishes_id() {

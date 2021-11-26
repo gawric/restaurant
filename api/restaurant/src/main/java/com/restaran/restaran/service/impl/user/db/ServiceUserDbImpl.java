@@ -3,7 +3,7 @@ package com.restaran.restaran.service.impl.user.db;
 
 import com.restaran.restaran.model.UserModel;
 import com.restaran.restaran.repository.UserModelRepository;
-import com.restaran.restaran.service.serviceinterface.IServiceUserDb;
+import com.restaran.restaran.service.serviceinterface.dbinterface.IServiceUserDb;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +12,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 

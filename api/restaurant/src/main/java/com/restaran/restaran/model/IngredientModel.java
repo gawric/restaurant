@@ -10,22 +10,15 @@ public class IngredientModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ingredient_id;
+    private long ingredient_id;
 
     @NotEmpty(message = "name не может быть пустым")
     @Size(min=2, message="name не может быть короче 2 символов")
     private String name;
 
-    @NotEmpty(message = "weight не может быть пустым")
     private int weight;
-
-    @NotEmpty(message = "number не может быть пустым")
     private int number;
-
-    @NotEmpty(message = "price не может быть пустым")
     private int price;
-
-    @NotEmpty(message = "price не может быть пустым")
     private int calories;
 
 
