@@ -8,5 +8,6 @@ public interface IServiceDishes {
     ResponseEntity<Object> addDishesWeb(DishesModel newDishes);
     ResponseEntity<Object> findByIdTWeb(long id);
     ResponseEntity<Object> updDishesWeb(DishesModel newDishes);
+    ResponseEntity<Object> delDishesWeb(long dishes_id);
 
 }

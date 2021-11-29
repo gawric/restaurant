@@ -24,7 +24,7 @@ public class IngredientModel {
 
     //@ManyToOne(fetch = FetchType.LAZY)
     //@JoinColumn(name="dishes_id", nullable=false)
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
     @JoinColumn(name = "dishes_id"  , insertable = true )
     private DishesModel  dishes;
 

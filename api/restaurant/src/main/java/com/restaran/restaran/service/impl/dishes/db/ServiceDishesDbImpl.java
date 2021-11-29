@@ -14,6 +14,7 @@ public class ServiceDishesDbImpl implements IServiceDishesDb {
     @Autowired
     private DishesModelRepository dishesRepo;
 
+    @Transactional(readOnly = true)
     @Override
     public Iterable<DishesModel> findAll() {
         return dishesRepo.findAll();
@@ -36,14 +37,28 @@ public class ServiceDishesDbImpl implements IServiceDishesDb {
         return false;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public DishesModel findByName(String name) {
         return dishesRepo.findByName(name);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public DishesModel findByDishesId(long dishes_Id) {
         return dishesRepo.findByDishesId(dishes_Id);
+    }
+
+    @Override
+    public boolean deleteByDishesId(long dishes_Id) {
+        dishesRepo.deleteById(dishes_Id);
+        return true;
+    }
+
+    @Override
+    public boolean deleteByModel(DishesModel dishesm) {
+        dishesRepo.delete(dishesm);
+        return true;
     }
 
 

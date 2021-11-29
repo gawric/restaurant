@@ -8,6 +8,7 @@ import com.restaran.restaran.model.IngredientModel;
 import com.restaran.restaran.model.UserModel;
 import com.restaran.restaran.service.serviceinterface.IServiceDishes;
 import com.restaran.restaran.service.serviceinterface.dbinterface.IServiceDishesDb;
+import com.restaran.restaran.service.serviceinterface.dbinterface.IServiceIngredientDb;
 import com.restaran.restaran.variable.ErrorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,8 @@ public class ServiceDishes implements IServiceDishes {
     @Autowired
     private IServiceDishesDb serviceDishesDb;
 
-
+    @Autowired
+    private IServiceIngredientDb serviceIngredientDb;
 
     //медленное добавление для вебки
     @Override
@@ -92,6 +94,23 @@ public class ServiceDishes implements IServiceDishes {
             ex.printStackTrace();
             return ErrorMessage.getResponceErrorHttpStatus("Not found user exception", HttpStatus.NOT_FOUND);
         }
+    }
+
+    @Override
+    public ResponseEntity<Object> delDishesWeb(long dishes_id) {
+
+       try{
+           serviceIngredientDb.deleteByDishesId(dishes_id);
+           if(!serviceDishesDb.deleteByDishesId(dishes_id))
+           {
+               throw new NotFoundUserException("Not found dished_id:  "+dishes_id+" exception");
+           }
+       }
+       catch(NotFoundUserException ex){
+         ex.printStackTrace();
+         return ErrorMessage.getResponceErrorHttpStatus("Not found Dishes exception", HttpStatus.NOT_FOUND);
+       }
+        return new ResponseEntity<>("Dishes delete succes", HttpStatus.OK);
     }
 
     private ArrayList<IngredientModel> addDidToIDient(List<IngredientModel> listIngDient , DishesModel dishesModel)

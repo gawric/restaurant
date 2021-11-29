@@ -23,9 +23,9 @@ public class DishesModel {
     @Size(min=2, message="name не может быть короче 2 символов")
     private String name;
 
-    @OneToMany(targetEntity = IngredientModel.class , fetch = FetchType.EAGER,cascade = CascadeType.ALL ,orphanRemoval=true  , mappedBy="dishes")
+    @OneToMany(targetEntity = IngredientModel.class , cascade = CascadeType.ALL , fetch = FetchType.LAZY, mappedBy="dishes")
     @Fetch(value = FetchMode.SUBSELECT)
-    private List<IngredientModel> ingredient = new ArrayList<IngredientModel>();
+    private List<IngredientModel> ingredient = new ArrayList<>();
 
     public List<IngredientModel> getIngredient() {
         return this.ingredient;

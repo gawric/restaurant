@@ -12,4 +12,6 @@ public interface IServiceDishesDb {
     boolean saveDishes(DishesModel dishesm);
     DishesModel findByName(String name);
     DishesModel findByDishesId(long dishes_Id);
+    boolean deleteByDishesId(long dishes_Id);
+    boolean deleteByModel(DishesModel dishesm);
 }
