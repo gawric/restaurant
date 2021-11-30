@@ -35,7 +35,7 @@ public class DishesController {
         return serviceDishes.updDishesWeb(newDishes);
     }
 
-    //@PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping(value = "/delDishes")
     public ResponseEntity<Object> delDishes(@RequestParam long id ) {
         return serviceDishes.delDishesWeb(id);

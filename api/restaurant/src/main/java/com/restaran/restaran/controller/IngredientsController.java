@@ -17,9 +17,15 @@ public class IngredientsController {
     @Autowired
     private IServiceIngredient serviceIngred;
 
-    @GetMapping(value = "/getIngredient")
+    @GetMapping(value = "/getIngred")
     public ResponseEntity<Object> getIngredient() {
         return serviceIngred.getIngredWebAll();
+    }
+
+    //@PreAuthorize("hasRole('USER')")
+    @GetMapping(value = "/delIngred")
+    public ResponseEntity<Object> delIngredient(@RequestParam long id ) {
+        return serviceIngred.delIngredWeb(id);
     }
 
 }

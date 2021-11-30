@@ -51,8 +51,21 @@ public class ServiceDishesDbImpl implements IServiceDishesDb {
 
     @Override
     public boolean deleteByDishesId(long dishes_Id) {
-        dishesRepo.deleteById(dishes_Id);
-        return true;
+        try
+        {
+            dishesRepo.deleteById(dishes_Id);
+            return true;
+        }catch (org.springframework.dao.EmptyResultDataAccessException ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
+        catch (org.springframework.transaction.UnexpectedRollbackException ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
+
     }
 
     @Override
