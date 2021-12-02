@@ -21,7 +21,7 @@ public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     //@ApiModelProperty(notes = "Имя пользователя",name="name",required=true,value="gawric")
     @NotEmpty(message = "username не может быть пустым")
@@ -145,6 +145,24 @@ public class UserModel {
 
     public void setLastEnterdata(LocalDateTime lastenterdata) {
         this.lastenterdata = lastenterdata;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UserModel userEquals = (UserModel) o;
+        return id == userEquals.getId() &&
+                userEquals.getUsername().equals(username);
+    }
+
+    @Override
+    public int hashCode() {
+        return  (int)id * username.hashCode() * password.hashCode() * firstname.hashCode()* lastname.hashCode()* email.hashCode();
     }
 
 

@@ -6,3 +6,6 @@ CREATE TABLE dishes(dishes_id serial PRIMARY KEY, name VARCHAR(255), weight inte
 
 DROP TABLE IF EXISTS ingredient;
 CREATE TABLE ingredient(ingredient_id serial PRIMARY KEY, name VARCHAR(255), weight integer , number integer , price integer, calories integer , dishes_id int not null, CONSTRAINT fk_dishes FOREIGN KEY(dishes_id) REFERENCES dishes(dishes_id));
+
+DROP TABLE IF EXISTS faq;
+CREATE TABLE faq(faq_id serial PRIMARY KEY, text_answer TEXT, text_request TEXT , theme VARCHAR(255));
