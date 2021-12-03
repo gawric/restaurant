@@ -26,6 +26,7 @@ public class CustomDetailsService  implements UserDetailsService {
 
         try {
              CustomUser cUser = getCustom(serviceUserDb.findByUsername(username));
+
              return getCustomUser(cUser ,  username);
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,6 +37,7 @@ public class CustomDetailsService  implements UserDetailsService {
     private CustomUser getCustomUser(CustomUser cUser , String username)
     {
         if(cUser == null) throw new UsernameNotFoundException("User " + username + " was not found in the database");
+
         return cUser;
     }
 
@@ -54,6 +56,10 @@ public class CustomDetailsService  implements UserDetailsService {
             userModel.setUsername("gawric");
             userModel.setLastname("worms");
             userModel.setMyrole("ROLE_ADMIN");
+            userModel.setAccountNonExpired(true);
+            userModel.setCredentialsNonExpired(true);
+            userModel.setAccountNonLocked(true);
+            userModel.setEnabled(true);
             userModel.setPassword(passwordEncoder.encode("11111111"));
         serviceUserDb.saveUser(userModel);
 

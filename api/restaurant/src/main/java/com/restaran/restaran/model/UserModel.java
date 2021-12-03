@@ -43,6 +43,11 @@ public class UserModel {
     @Email
     private String email;
 
+    private boolean enabled;
+    private boolean accountNonExpired;
+    private boolean credentialsNonExpired;
+    private boolean accountNonLocked;
+
     //@ApiModelProperty(notes = "Роль пользователя в системе безопасности",name="name",required=true,value="ROLE_USER")
     @NotEmpty(message = "myrole не может быть пустым")
     @Size(min=2, message="myrole не может быть короче 2 символов")
@@ -145,6 +150,38 @@ public class UserModel {
 
     public void setLastEnterdata(LocalDateTime lastenterdata) {
         this.lastenterdata = lastenterdata;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
     }
 
     @Override

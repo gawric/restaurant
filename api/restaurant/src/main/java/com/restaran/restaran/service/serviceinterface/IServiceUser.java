@@ -9,5 +9,8 @@ public interface IServiceUser {
     ResponseEntity<Object> updUserWeb(UserModel newUser);
     ResponseEntity<Object> delUserWeb(long id);
     ResponseEntity<Object> selfUpdUserWeb(String authUsername , UserModel newUser);
+    //true blocked
+    //false unblocked
+    ResponseEntity<Object> blockUserWeb(long userId , boolean isBlock);
 
 }

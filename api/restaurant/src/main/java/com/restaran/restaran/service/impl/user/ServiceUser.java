@@ -107,6 +107,35 @@ public class ServiceUser implements IServiceUser {
 
     }
 
+    @Override
+    public ResponseEntity<Object> blockUserWeb(long userId , boolean isBlock) {
+        try
+        {
+            UserModel user = serviceUserDb.findById(userId);
+            sNull(user);
+            setBlock(isBlock ,  user);
+            serviceUserDb.saveUser(user);
+            if(isBlock)return new ResponseEntity<>("User-> username: "+ user.getUsername() +" and userid: "+user.getId()+" succes blocked", HttpStatus.OK);
+
+            return new ResponseEntity<>("User-> username: "+ user.getUsername() +" and userid: "+user.getId()+" succes unblocked", HttpStatus.OK);
+
+        }catch (NotFoundUserException ex)
+        {
+            ex.printStackTrace();
+            return ErrorMessage.getResponceErrorHttpStatus("Not found user exception", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    private void setBlock(boolean isBlock , UserModel user)
+    {
+        if(isBlock) {
+            setEnabBlock(user);
+        }
+        else {
+            setDisabBlock(user);
+        }
+
+    }
 
     //медленное добавление для вебки
     public ResponseEntity<Object> addUserWeb(UserModel newUser)
@@ -117,6 +146,7 @@ public class ServiceUser implements IServiceUser {
             if(serviceUserDb.findExistByname(newUser.getUsername())) throw new IncorrectUserNameException("Username already in use");
             setLdT(newUser);
             setRoleUser(newUser);
+            setDisabBlock(newUser);
             decodePassword(newUser);
             if(serviceUserDb.saveUser(newUser))return new ResponseEntity(HttpStatus.OK);
         }
@@ -158,5 +188,21 @@ public class ServiceUser implements IServiceUser {
     {
         if(newUser != null)
             newUser.setMyrole("ROLE_USER");
+    }
+
+    private void setDisabBlock(UserModel newUser)
+    {
+        newUser.setAccountNonLocked(true);
+        newUser.setEnabled(true);
+        newUser.setCredentialsNonExpired(true);
+        newUser.setAccountNonExpired(true);
+    }
+
+    private void setEnabBlock(UserModel newUser)
+    {
+        newUser.setAccountNonLocked(false);
+        newUser.setEnabled(true);
+        newUser.setCredentialsNonExpired(true);
+        newUser.setAccountNonExpired(false);
     }
 }

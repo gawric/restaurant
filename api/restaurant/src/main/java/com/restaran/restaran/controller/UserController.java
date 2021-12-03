@@ -36,8 +36,20 @@ public class UserController {
     }
 
 
+    @ApiOperation(value = "Админка для блокировки пользователя по id номеру")
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping(value = "/blockUser")
+    public ResponseEntity<Object>  blockUser(@RequestParam long id) {
+        return serviceUser.blockUserWeb(id , true);
+    }
+
 
     @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping(value = "/unblockUser")
+    public ResponseEntity<Object>  unblockUser(@RequestParam long id) {
+        return serviceUser.blockUserWeb(id , false);
+    }
+
     @PostMapping(path  = "/addUser" , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object>  createUser(@Valid @RequestBody UserModel newUser) {
         return serviceUser.addUserWeb(newUser);
